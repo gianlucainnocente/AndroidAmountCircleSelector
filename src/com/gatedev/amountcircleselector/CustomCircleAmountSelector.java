@@ -194,6 +194,9 @@ public class CustomCircleAmountSelector extends FrameLayout {
 		setValues(newval);
 	}
 
+	/*
+	 * To order the values list
+	 */
 	private void reorderValues() {
 		Collections.sort(mTargets, new Comparator<Target>() {
 
@@ -242,8 +245,6 @@ public class CustomCircleAmountSelector extends FrameLayout {
 		mUpperBackgroundPath.addArc(mCircleRect, 180, 180);
 
 		setMeasuredDimension(mContainerSize, mContainerSize);
-
-		//LogUtils.debug(TAG, "Width: "+getMeasuredWidth()+"   height:"+getMeasuredHeight());
 	}
 
 	@Override
@@ -316,6 +317,7 @@ public class CustomCircleAmountSelector extends FrameLayout {
 	public boolean onTouchEvent(MotionEvent event) {
 		super.onTouchEvent(event);
 
+		//This is needed to make this component works into a ScrollView
 		getParent().requestDisallowInterceptTouchEvent(true);
 
 		if(!mIsEnabled) {
@@ -578,6 +580,9 @@ public class CustomCircleAmountSelector extends FrameLayout {
 		return nearest;
 	}
 
+	/*
+	 * Determine if the user is touching the handle
+	 */
 	private boolean touchInSelector(float tx, float ty, float selectorAngle, float radius) {
 		float selectorX = computeX(selectorAngle, mSize / 2);
 		float selectorY = computeY(selectorAngle, mSize / 2);
